@@ -5,5 +5,5 @@
 - [x] Update company, shipping, quality, contact, and metadata copy
 - [x] Remove US Warehouse and Cold-Chain Handling content
 - [x] Add the legal compliance statement
-- [ ] Hide the Lovable badge
-- [ ] Verify desktop and mobile layouts and interactions
+- [x] Hide the Lovable badge
+- [x] Verify desktop and mobile layouts and interactions

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Check, ChevronRight, FlaskConical, Menu, Minus, Plus, ShieldCheck, ShoppingBag, Snowflake, Truck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/amino-heaven-logo.jpeg.asset.json";
-import vialAsset from "@/assets/amino-heaven-vial.jpg.asset.json";
+import vialImage from "@/assets/amino-heaven-vial-branded.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -62,7 +62,7 @@ function ProductCard({ product }: { product: (typeof products)[number] }) {
   const packPrice = pack === 1 ? product.price : pack === 5 ? product.price * 4 : product.price * 7;
   return (
     <article className="product-card">
-      <a href="#catalog" className="product-image"><img src={vialAsset.url} alt={`${product.name} research vial`} /></a>
+      <a href="#catalog" className="product-image"><img src={vialImage} alt={`${product.name} research vial`} /></a>
       <div className="product-copy">
         <div className="flex items-start justify-between gap-3">
           <h3>{product.name}</h3><span className="stock"><span />In Stock</span>
@@ -107,7 +107,7 @@ function Index() {
               <div className="mt-7 flex flex-wrap gap-3"><Button asChild><a href="#catalog">Browse the catalog <ChevronRight size={16}/></a></Button><Button asChild variant="outline"><a href="#quality">View COAs</a></Button></div>
               <p className="mt-5 text-xs font-medium text-muted-foreground">For laboratory research use only—not for human consumption.</p>
             </div>
-            <div className="hero-product"><div className="halo-ring"/><img src={vialAsset.url} alt="Amino Heaven laboratory research vial"/><span>VERIFIED<br/>RESEARCH<br/>MATERIAL</span></div>
+            <div className="hero-product"><div className="halo-ring"/><img src={vialImage} alt="Amino Heaven laboratory research vial"/><span>VERIFIED<br/>RESEARCH<br/>MATERIAL</span></div>
           </div>
         </section>
 

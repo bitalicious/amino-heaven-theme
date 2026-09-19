@@ -30,6 +30,13 @@ const products = [
   { name: "SS31 10mg", family: "Longevity", price: 100, bulk: 950, cap: "Pink cap", dose: "10MG" },
 ];
 
+const trustItems = [
+  { icon: FlaskConical, title: "≥99% Purity", text: "HPLC & MS verified per batch" },
+  { icon: ShieldCheck, title: "Third-Party COAs", text: "Independent lab reports published" },
+  { icon: Snowflake, title: "US Warehouse", text: "Temperature-controlled handling" },
+  { icon: Truck, title: "Free Shipping $600+", text: "Free on qualifying orders" },
+];
+
 function HelixBackdrop() {
   return (
     <div className="helix-field" aria-hidden="true">
@@ -105,7 +112,7 @@ function Index() {
         </section>
 
         <section className="trust-strip">
-          {[[FlaskConical,"≥99% Purity","HPLC & MS verified per batch"],[ShieldCheck,"Third-Party COAs","Independent lab reports published"],[Snowflake,"US Warehouse","Temperature-controlled handling"],[Truck,"Free Shipping $600+","Free on qualifying orders"]].map(([Icon,title,text]) => <div key={String(title)}><Icon size={23}/><span><b>{String(title)}</b><small>{String(text)}</small></span></div>)}
+          {trustItems.map(({ icon: Icon, title, text }) => <div key={title}><Icon size={23}/><span><b>{title}</b><small>{text}</small></span></div>)}
         </section>
 
         <section id="catalog" className="content-section">

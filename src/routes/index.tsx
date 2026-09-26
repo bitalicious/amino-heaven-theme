@@ -93,7 +93,7 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="min-h-screen overflow-hidden bg-background text-foreground">
-      <div className="sale-ticker"><div>Fall Sale 30% Sitewide - No Code Needed</div></div>
+      <div className="sale-ticker"><div>Fall Sale 30% Off Sitewide - No Code Needed</div></div>
       <header className="site-header">
         <a href="#top" className="brand"><img src={logoAsset.url} alt="Amino Heaven" /><span><b>AMINO HEAVEN</b><small>RESEARCH USE ONLY</small></span></a>
         <nav className="desktop-nav"><a href="#catalog">Shop</a><a href="#quality">Quality / COAs</a><a href="#about">About</a><a href="#contact">Contact</a></nav>

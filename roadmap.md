@@ -7,3 +7,7 @@
 - [x] Add the legal compliance statement
 - [x] Hide the Lovable badge
 - [x] Verify desktop and mobile layouts and interactions
+- [ ] Populate 21 catalog cards with supplied product data
+- [ ] Map uploaded thumbnails and apply 5%/10% tier pricing
+- [ ] Remove cap labels and stray vial equivalency text
+- [ ] Verify catalog responsiveness and interactions

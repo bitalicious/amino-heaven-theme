@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronRight, FlaskConical, Menu, Minus, Plus, ShieldCheck, ShoppingBag, Truck, X } from "lucide-react";
+import { ChevronRight, FileText, FlaskConical, Menu, Minus, Plus, ShieldCheck, ShoppingBag, Truck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/amino-heaven-logo.jpeg.asset.json";
 import vialImage from "@/assets/amino-heaven-vial-branded.jpg";
@@ -21,6 +21,9 @@ import nadImage from "@/assets/products/Nad_1000mg.webp.asset.json";
 import pt141Image from "@/assets/products/pt14110mg.webp.asset.json";
 import sermorelinImage from "@/assets/products/SERMORELIN5mg.webp.asset.json";
 import tb500Image from "@/assets/products/TB-50010mg.webp.asset.json";
+import klowImage from "@/assets/products/KLOW80mg.png.asset.json";
+import kpvImage from "@/assets/products/KPV10mg.webp.asset.json";
+import tesaImage from "@/assets/products/Tesa10mg.webp.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -51,15 +54,15 @@ const products = [
   { name: "GHK-cu 100mg", price: 44.95, dose: "100MG", image: ghkImage.url },
   { name: "Glow 70mg", price: 99.95, dose: "70MG", image: glowImage.url },
   { name: "Ipamorelin 10mg", price: 49.95, dose: "10MG", image: ipamorelinImage.url },
-  { name: "KLOW 80mg", price: 109.95, dose: "80MG", image: vialImage },
-  { name: "KPV 10mg", price: 45.95, dose: "10MG", image: vialImage },
+  { name: "KLOW 80mg", price: 109.95, dose: "80MG", image: klowImage.url },
+  { name: "KPV 10mg", price: 45.95, dose: "10MG", image: kpvImage.url },
   { name: "Melanotan ll 10mg", price: 39.95, dose: "10MG", image: melanotanImage.url },
   { name: "Mots-c 40mg", price: 134.95, dose: "40MG", image: motsCImage.url },
   { name: "NAD+ 1000mg", price: 64.95, dose: "1000MG", image: nadImage.url },
   { name: "PT-141 10mg", price: 39.95, dose: "10MG", image: pt141Image.url },
   { name: "Sermorelin 5mg", price: 39.95, dose: "5MG", image: sermorelinImage.url },
   { name: "TB-500 10mg", price: 39.95, dose: "10MG", image: tb500Image.url },
-  { name: "Tesamorelin 10mg", price: 59.95, dose: "10MG", image: vialImage },
+  { name: "Tesamorelin 10mg", price: 59.95, dose: "10MG", image: tesaImage.url },
 ];
 
 const trustItems = [

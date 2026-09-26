@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ChevronRight, FlaskConical, Menu, Minus, Plus, ShieldCheck, ShoppingBag, Truck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GalleryManager } from "@/components/GalleryManager";
 import logoAsset from "@/assets/amino-heaven-logo.jpeg.asset.json";
 import vialImage from "@/assets/amino-heaven-vial-branded.jpg";
 
@@ -93,7 +94,7 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="min-h-screen overflow-hidden bg-background text-foreground">
-      <div className="sale-ticker"><div>Fall Sale 30% Sitewide - No Code Needed</div></div>
+      <div className="sale-ticker"><div>Fall Sale 30% Off Sitewide - No Code Needed</div></div>
       <header className="site-header">
         <a href="#top" className="brand"><img src={logoAsset.url} alt="Amino Heaven" /><span><b>AMINO HEAVEN</b><small>RESEARCH USE ONLY</small></span></a>
         <nav className="desktop-nav"><a href="#catalog">Shop</a><a href="#quality">Quality / COAs</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
@@ -123,6 +124,7 @@ function Index() {
         <section id="catalog" className="content-section">
           <div className="section-heading"><div><p className="eyebrow">Curated compounds</p><h2>Featured compounds</h2><p>Best-moving vials available this week.</p></div><a href="#catalog">View all <ChevronRight size={16}/></a></div>
           <div className="product-grid">{products.map((product) => <ProductCard key={product.name} product={product}/>)}</div>
+          <GalleryManager />
         </section>
 
         <section id="quality" className="quality-band">

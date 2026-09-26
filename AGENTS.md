@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Product photography is stored as Lovable CDN asset pointers so the 21-card catalog stays lightweight while retaining stable image assignments.

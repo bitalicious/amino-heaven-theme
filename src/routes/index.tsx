@@ -109,6 +109,7 @@ function ProductCard({ product }: { product: (typeof products)[number] }) {
         <p className="eyebrow mt-4">Research compound</p>
         <div className="price-line mt-2"><del>${formatPrice(listPrice(product.price))}</del><strong>${formatPrice(product.price)}</strong><span>/ vial</span></div>
         <p className="bulk-price mt-1"><span>10 vials = </span><del>${formatPrice(listPrice(tenVialPrice))}</del> <strong>${formatPrice(tenVialPrice)}</strong></p>
+        <Button className="mt-3 w-full" onClick={() => undefined}><FileText size={15}/>View COA</Button>
         <div className="pack-grid mt-4">
           {[1,5,10].map((count) => {
             const sellingPrice = tierPrice(product.price, count);

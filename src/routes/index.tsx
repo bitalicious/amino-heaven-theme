@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ChevronRight, FlaskConical, Menu, Minus, Plus, ShieldCheck, ShoppingBag, Truck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GalleryManager } from "@/components/GalleryManager";
 import logoAsset from "@/assets/amino-heaven-logo.jpeg.asset.json";
 import vialImage from "@/assets/amino-heaven-vial-branded.jpg";
 
@@ -123,6 +124,7 @@ function Index() {
         <section id="catalog" className="content-section">
           <div className="section-heading"><div><p className="eyebrow">Curated compounds</p><h2>Featured compounds</h2><p>Best-moving vials available this week.</p></div><a href="#catalog">View all <ChevronRight size={16}/></a></div>
           <div className="product-grid">{products.map((product) => <ProductCard key={product.name} product={product}/>)}</div>
+          <GalleryManager />
         </section>
 
         <section id="quality" className="quality-band">

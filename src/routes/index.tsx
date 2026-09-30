@@ -46,25 +46,25 @@ type ProductVariant = { dose: string; price: number; image: string };
 type Product = { name: string; variants: ProductVariant[] };
 
 const products: Product[] = [
-  { name: "BPC + TB", variants: [{ dose: "10MG", price: 49.95, image: bpcTbImage.url }] },
-  { name: "BPC 157", variants: [{ dose: "10MG", price: 49.95, image: bpcImage.url }] },
-  { name: "CJC + Ipa", variants: [{ dose: "10MG", price: 49.95, image: cjcIpaImage.url }] },
-  { name: "CJC(noDAC)", variants: [{ dose: "10MG", price: 49.95, image: cjcImage.url }] },
-  { name: "GLP1-SM", variants: [{ dose: "10MG", price: 49.95, image: glp1Image.url }] },
-  { name: "GLP2-TR", variants: [{ dose: "10MG", price: 49.95, image: glp2TenImage.url }, { dose: "60MG", price: 199.95, image: glp2SixtyImage.url }] },
-  { name: "GLP3-RT", variants: [{ dose: "10MG", price: 69.95, image: glp3Image.url }, { dose: "60MG", price: 249.95, image: glp3SixtyImage }] },
-  { name: "GHK-cu", variants: [{ dose: "100MG", price: 44.95, image: ghkImage.url }] },
-  { name: "Glow", variants: [{ dose: "70MG", price: 99.95, image: glowImage.url }] },
-  { name: "Ipamorelin", variants: [{ dose: "10MG", price: 49.95, image: ipamorelinImage.url }] },
-  { name: "KLOW", variants: [{ dose: "80MG", price: 109.95, image: klowImage.url }] },
-  { name: "KPV", variants: [{ dose: "10MG", price: 45.95, image: kpvImage.url }] },
-  { name: "Melanotan ll", variants: [{ dose: "10MG", price: 39.95, image: melanotanImage.url }] },
-  { name: "Mots-c", variants: [{ dose: "40MG", price: 134.95, image: motsCImage.url }] },
-  { name: "NAD+", variants: [{ dose: "1000MG", price: 64.95, image: nadImage.url }] },
-  { name: "PT-141", variants: [{ dose: "10MG", price: 39.95, image: pt141Image.url }] },
-  { name: "Sermorelin", variants: [{ dose: "5MG", price: 39.95, image: sermorelinImage.url }] },
-  { name: "TB-500", variants: [{ dose: "10MG", price: 39.95, image: tb500Image.url }] },
-  { name: "Tesamorelin", variants: [{ dose: "10MG", price: 59.95, image: tesaImage.url }] },
+  { name: "BPC-157/TB-500", variants: [{ dose: "5mg/5mg", price: 49.95, image: bpcTbImage.url }] },
+  { name: "BPC-157", variants: [{ dose: "10mg", price: 49.95, image: bpcImage.url }] },
+  { name: "CJC-1295 (No DAC) IPAMORELIN", variants: [{ dose: "5mg/5mg", price: 49.95, image: cjcIpaImage.url }] },
+  { name: "CJC-1295 (No DAC)", variants: [{ dose: "10mg", price: 49.95, image: cjcImage.url }] },
+  { name: "GLP1-SM", variants: [{ dose: "10mg", price: 49.95, image: glp1Image.url }] },
+  { name: "GLP2-TR", variants: [{ dose: "10mg", price: 49.95, image: glp2TenImage.url }, { dose: "60mg", price: 199.95, image: glp2SixtyImage.url }] },
+  { name: "GLP3-RT", variants: [{ dose: "10mg", price: 69.95, image: glp3Image.url }, { dose: "60mg", price: 249.95, image: glp3SixtyImage }] },
+  { name: "GHK-CU", variants: [{ dose: "100mg", price: 44.95, image: ghkImage.url }] },
+  { name: "GLOW", variants: [{ dose: "70mg", price: 99.95, image: glowImage.url }] },
+  { name: "IPAMORELIN", variants: [{ dose: "10mg", price: 49.95, image: ipamorelinImage.url }] },
+  { name: "KLOW", variants: [{ dose: "80mg", price: 109.95, image: klowImage.url }] },
+  { name: "KPV", variants: [{ dose: "10mg", price: 45.95, image: kpvImage.url }] },
+  { name: "MELANOTAN II", variants: [{ dose: "10mg", price: 39.95, image: melanotanImage.url }] },
+  { name: "MOTS-c", variants: [{ dose: "40mg", price: 134.95, image: motsCImage.url }] },
+  { name: "NAD+", variants: [{ dose: "1000mg", price: 64.95, image: nadImage.url }] },
+  { name: "PT-141", variants: [{ dose: "10mg", price: 39.95, image: pt141Image.url }] },
+  { name: "SERMORELIN", variants: [{ dose: "5mg", price: 39.95, image: sermorelinImage.url }] },
+  { name: "TB-500", variants: [{ dose: "10mg", price: 39.95, image: tb500Image.url }] },
+  { name: "Tesamorelin", variants: [{ dose: "10mg", price: 59.95, image: tesaImage.url }] },
 ];
 
 const trustItems = [
@@ -102,7 +102,7 @@ function ProductCard({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const variant = product.variants[variantIndex] ?? product.variants[0];
   if (!variant) return null;
-  const displayName = `${product.name} ${variant.dose.toLowerCase()}`;
+  const displayName = `${product.name} ${variant.dose}`;
   const packPrice = tierPrice(variant.price, pack);
   const tenVialPrice = tierPrice(variant.price, 10);
   return (

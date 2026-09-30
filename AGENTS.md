@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Product photography is stored as Lovable CDN asset pointers when uploaded, while generated variant imagery may remain bundled; products use nested variants so strength selection updates image, pricing, totals, and CTA together.
+- The storefront entry gate requires both 21+ and research-use confirmations, and stores acceptance only for the current browser session so new sessions are gated again.

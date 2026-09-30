@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronRight, FileText, FlaskConical, Menu, Minus, Plus, ShieldCheck, ShoppingBag, Truck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/amino-heaven-logo.jpeg.asset.json";
@@ -74,8 +74,80 @@ const trustItems = [
 ];
 
 const listPrice = (price: number) => Math.round(price * 1.3 * 100) / 100;
-const tierPrice = (unitPrice: number, count: number) => Math.round(unitPrice * count * (count === 5 ? 0.95 : count === 10 ? 0.9 : 1) * 100) / 100;
+const tierPrice = (unitPrice: number, count: number) => Math.round(unitPrice * count * (count === 2 ? 0.95 : count === 5 ? 0.85 : 1) * 100) / 100;
 const formatPrice = (price: number) => price.toFixed(2);
+
+const AGE_GATE_KEY = "amino-heaven-age-verified";
+
+function AgeVerificationModal({ onEnter }: { onEnter: () => void }) {
+  const [isOfAge, setIsOfAge] = useState(false);
+  const [researchOnly, setResearchOnly] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const canEnter = isOfAge && researchOnly;
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialogRef.current?.focus();
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
+
+  const keepFocusInside = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "Tab") return;
+    const controls = dialogRef.current?.querySelectorAll<HTMLElement>(
+      'input:not([disabled]), button:not([disabled])',
+    );
+    if (!controls?.length) return;
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (!first || !last) return;
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+
+  return (
+    <div className="age-gate" role="presentation">
+      <div
+        ref={dialogRef}
+        className="age-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="age-dialog-title"
+        aria-describedby="age-dialog-description"
+        tabIndex={-1}
+        onKeyDown={keepFocusInside}
+      >
+        <div className="age-dialog-mark" aria-hidden="true"><FlaskConical /></div>
+        <p className="eyebrow">Restricted access</p>
+        <h2 id="age-dialog-title">Age Verification</h2>
+        <p id="age-dialog-description">
+          Amino Heaven sells research peptides exclusively for laboratory and analytical research. You must be 21 or older to enter.
+        </p>
+        <div className="age-confirmations">
+          <label>
+            <input type="checkbox" checked={isOfAge} onChange={(event) => setIsOfAge(event.target.checked)} />
+            <span>I confirm that I am 21 years of age or older.</span>
+          </label>
+          <label>
+            <input type="checkbox" checked={researchOnly} onChange={(event) => setResearchOnly(event.target.checked)} />
+            <span>I acknowledge that all products are for laboratory research use only and are not for human consumption.</span>
+          </label>
+        </div>
+        <div className="age-actions">
+          <Button disabled={!canEnter} onClick={onEnter}>I Agree and Enter</Button>
+          <Button variant="outline" onClick={() => window.location.assign("about:blank")}>Exit</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function HelixBackdrop() {
   return (
@@ -104,7 +176,7 @@ function ProductCard({ product }: { product: Product }) {
   if (!variant) return null;
   const displayName = `${product.name} ${variant.dose}`;
   const packPrice = tierPrice(variant.price, pack);
-  const tenVialPrice = tierPrice(variant.price, 10);
+  const fiveVialPrice = tierPrice(variant.price, 5);
   return (
     <article className="product-card">
       <a href="#catalog" className="product-image"><img src={variant.image} alt={`${displayName} research vial`} /></a>
@@ -117,12 +189,12 @@ function ProductCard({ product }: { product: Product }) {
           {product.variants.map((option, index) => <Button type="button" variant="outline" key={option.dose} aria-pressed={variantIndex === index} onClick={() => setVariantIndex(index)} className={variantIndex === index ? "active" : ""}>{option.dose}</Button>)}
         </div>}
         <div className="price-line mt-2"><del>${formatPrice(listPrice(variant.price))}</del><strong>${formatPrice(variant.price)}</strong><span>/ vial</span></div>
-        <p className="bulk-price mt-1"><span>10 vials = </span><del>${formatPrice(listPrice(tenVialPrice))}</del> <strong>${formatPrice(tenVialPrice)}</strong></p>
+        <p className="bulk-price mt-1"><span>5 vials = </span><del>${formatPrice(listPrice(fiveVialPrice))}</del> <strong>${formatPrice(fiveVialPrice)}</strong></p>
         <Button className="mt-3 w-full" onClick={() => undefined}><FileText size={15}/>View COA</Button>
         <div className="pack-grid mt-4">
-          {[1,5,10].map((count) => {
+          {[1,2,5].map((count) => {
             const sellingPrice = tierPrice(variant.price, count);
-            return <button type="button" key={count} onClick={() => setPack(count)} className={pack === count ? "active" : ""}><b>{count} VIAL{count > 1 ? "S" : ""}</b><span><del>${formatPrice(listPrice(sellingPrice))}</del> ${formatPrice(sellingPrice)}</span>{count > 1 && <em>Save {count === 5 ? 5 : 10}%</em>}</button>;
+            return <button type="button" key={count} onClick={() => setPack(count)} className={pack === count ? "active" : ""}><b>{count} VIAL{count > 1 ? "S" : ""}</b><span><del>${formatPrice(listPrice(sellingPrice))}</del> ${formatPrice(sellingPrice)}</span>{count > 1 && <em>Save {count === 2 ? 5 : 15}%</em>}</button>;
           })}
         </div>
         <div className="mt-4 grid grid-cols-[104px_minmax(0,1fr)] gap-2">
@@ -137,8 +209,20 @@ function ProductCard({ product }: { product: Product }) {
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [ageVerified, setAgeVerified] = useState(false);
+
+  useEffect(() => {
+    setAgeVerified(window.sessionStorage.getItem(AGE_GATE_KEY) === "true");
+  }, []);
+
+  const enterStore = () => {
+    window.sessionStorage.setItem(AGE_GATE_KEY, "true");
+    setAgeVerified(true);
+  };
+
   return (
     <div className="min-h-screen overflow-hidden bg-background text-foreground">
+      {!ageVerified && <AgeVerificationModal onEnter={enterStore} />}
       <div className="sale-ticker"><div>Fall Sale 30% Off Sitewide - No Code Needed</div></div>
       <header className="site-header">
         <a href="#top" className="brand"><img src={logoAsset.url} alt="Amino Heaven" /><span><b>AMINO HEAVEN</b><small>RESEARCH USE ONLY</small></span></a>

@@ -17,3 +17,5 @@
 - [x] Verify variant switching and responsive image fit
 - [x] Match every catalog card title to its bottle label text
 - [x] Re-verify catalog image centering and padding after title changes
+- [x] Add the 21+ research-use entry verification modal
+- [x] Replace catalog tiers with 1, 2, and 5 vial pricing

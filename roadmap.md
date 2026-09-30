@@ -14,4 +14,4 @@
 - [x] Replace the top vial with the uploaded blank-logo graphic
 - [x] Group GLP2-TR and GLP3-RT strengths into dynamic cards
 - [x] Center and pad all catalog product images
-- [ ] Verify variant switching and responsive image fit
+- [x] Verify variant switching and responsive image fit

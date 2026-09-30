@@ -15,3 +15,5 @@
 - [x] Group GLP2-TR and GLP3-RT strengths into dynamic cards
 - [x] Center and pad all catalog product images
 - [x] Verify variant switching and responsive image fit
+- [x] Match every catalog card title to its bottle label text
+- [x] Re-verify catalog image centering and padding after title changes

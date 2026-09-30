@@ -114,7 +114,7 @@ function ProductCard({ product }: { product: Product }) {
         </div>
         <p className="eyebrow mt-4">Research compound</p>
         {product.variants.length > 1 && <div className="variant-selector mt-3" aria-label={`${product.name} strength`}>
-          {product.variants.map((option, index) => <Button type="button" variant="outline" size="sm" key={option.dose} aria-pressed={variantIndex === index} onClick={() => setVariantIndex(index)} className={variantIndex === index ? "active" : ""}>{option.dose}</Button>)}
+          {product.variants.map((option, index) => <Button type="button" variant="outline" key={option.dose} aria-pressed={variantIndex === index} onClick={() => setVariantIndex(index)} className={variantIndex === index ? "active" : ""}>{option.dose}</Button>)}
         </div>}
         <div className="price-line mt-2"><del>${formatPrice(listPrice(variant.price))}</del><strong>${formatPrice(variant.price)}</strong><span>/ vial</span></div>
         <p className="bulk-price mt-1"><span>10 vials = </span><del>${formatPrice(listPrice(tenVialPrice))}</del> <strong>${formatPrice(tenVialPrice)}</strong></p>

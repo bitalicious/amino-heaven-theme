@@ -11,3 +11,7 @@
 - [x] Map uploaded thumbnails and apply 5%/10% tier pricing
 - [x] Remove cap labels and stray vial equivalency text
 - [x] Verify catalog responsiveness and interactions
+- [ ] Replace the top vial with the uploaded blank-logo graphic
+- [ ] Group GLP2-TR and GLP3-RT strengths into dynamic cards
+- [ ] Center and pad all catalog product images
+- [ ] Verify variant switching and responsive image fit

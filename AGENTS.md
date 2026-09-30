@@ -9,4 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Product photography is stored as Lovable CDN asset pointers so the 21-card catalog stays lightweight while retaining stable image assignments.
+- Product photography is stored as Lovable CDN asset pointers when uploaded, while generated variant imagery may remain bundled; products use nested variants so strength selection updates image, pricing, totals, and CTA together.

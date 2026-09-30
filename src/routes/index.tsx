@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ChevronRight, FileText, FlaskConical, Menu, Minus, Plus, ShieldCheck, ShoppingBag, Truck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/amino-heaven-logo.jpeg.asset.json";
-import vialImage from "@/assets/amino-heaven-vial-branded.jpg";
+import heroVialImage from "@/assets/BLANKLOGO.png.asset.json";
 import bpcTbImage from "@/assets/products/BPC157_TB500_5mg_5mg.webp.asset.json";
 import bpcImage from "@/assets/products/BPC-157_10mg.webp.asset.json";
 import cjcIpaImage from "@/assets/products/CJC1295NoDACIPAMORELIN5mg_5mg.webp.asset.json";
@@ -12,6 +12,7 @@ import glp1Image from "@/assets/products/GLP1-SM10mg.webp.asset.json";
 import glp2TenImage from "@/assets/products/GLP2-TR10mg.webp.asset.json";
 import glp2SixtyImage from "@/assets/products/GLP2-TR60mg.webp.asset.json";
 import glp3Image from "@/assets/products/GLP3-RT10mg.webp.asset.json";
+import glp3SixtyImage from "@/assets/products/GLP3-RT60mg.png";
 import ghkImage from "@/assets/products/GHK-CU100mg.webp.asset.json";
 import glowImage from "@/assets/products/Glow70mg.webp.asset.json";
 import ipamorelinImage from "@/assets/products/Ipamorelin10mg.webp.asset.json";
@@ -41,28 +42,29 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const products = [
-  { name: "BPC + TB 10mg", price: 49.95, dose: "10MG", image: bpcTbImage.url },
-  { name: "BPC 157 10mg", price: 49.95, dose: "10MG", image: bpcImage.url },
-  { name: "CJC + Ipa 10mg", price: 49.95, dose: "10MG", image: cjcIpaImage.url },
-  { name: "CJC(noDAC) 10mg", price: 49.95, dose: "10MG", image: cjcImage.url },
-  { name: "GLP1-SM 10mg", price: 49.95, dose: "10MG", image: glp1Image.url },
-  { name: "GLP2-TR 10mg", price: 49.95, dose: "10MG", image: glp2TenImage.url },
-  { name: "GLP2-TR 60mg", price: 199.95, dose: "60MG", image: glp2SixtyImage.url },
-  { name: "GLP3-RT 10mg", price: 69.95, dose: "10MG", image: glp3Image.url },
-  { name: "GLP3-RT 60mg", price: 249.95, dose: "60MG", image: glp3Image.url },
-  { name: "GHK-cu 100mg", price: 44.95, dose: "100MG", image: ghkImage.url },
-  { name: "Glow 70mg", price: 99.95, dose: "70MG", image: glowImage.url },
-  { name: "Ipamorelin 10mg", price: 49.95, dose: "10MG", image: ipamorelinImage.url },
-  { name: "KLOW 80mg", price: 109.95, dose: "80MG", image: klowImage.url },
-  { name: "KPV 10mg", price: 45.95, dose: "10MG", image: kpvImage.url },
-  { name: "Melanotan ll 10mg", price: 39.95, dose: "10MG", image: melanotanImage.url },
-  { name: "Mots-c 40mg", price: 134.95, dose: "40MG", image: motsCImage.url },
-  { name: "NAD+ 1000mg", price: 64.95, dose: "1000MG", image: nadImage.url },
-  { name: "PT-141 10mg", price: 39.95, dose: "10MG", image: pt141Image.url },
-  { name: "Sermorelin 5mg", price: 39.95, dose: "5MG", image: sermorelinImage.url },
-  { name: "TB-500 10mg", price: 39.95, dose: "10MG", image: tb500Image.url },
-  { name: "Tesamorelin 10mg", price: 59.95, dose: "10MG", image: tesaImage.url },
+type ProductVariant = { dose: string; price: number; image: string };
+type Product = { name: string; variants: ProductVariant[] };
+
+const products: Product[] = [
+  { name: "BPC + TB", variants: [{ dose: "10MG", price: 49.95, image: bpcTbImage.url }] },
+  { name: "BPC 157", variants: [{ dose: "10MG", price: 49.95, image: bpcImage.url }] },
+  { name: "CJC + Ipa", variants: [{ dose: "10MG", price: 49.95, image: cjcIpaImage.url }] },
+  { name: "CJC(noDAC)", variants: [{ dose: "10MG", price: 49.95, image: cjcImage.url }] },
+  { name: "GLP1-SM", variants: [{ dose: "10MG", price: 49.95, image: glp1Image.url }] },
+  { name: "GLP2-TR", variants: [{ dose: "10MG", price: 49.95, image: glp2TenImage.url }, { dose: "60MG", price: 199.95, image: glp2SixtyImage.url }] },
+  { name: "GLP3-RT", variants: [{ dose: "10MG", price: 69.95, image: glp3Image.url }, { dose: "60MG", price: 249.95, image: glp3SixtyImage }] },
+  { name: "GHK-cu", variants: [{ dose: "100MG", price: 44.95, image: ghkImage.url }] },
+  { name: "Glow", variants: [{ dose: "70MG", price: 99.95, image: glowImage.url }] },
+  { name: "Ipamorelin", variants: [{ dose: "10MG", price: 49.95, image: ipamorelinImage.url }] },
+  { name: "KLOW", variants: [{ dose: "80MG", price: 109.95, image: klowImage.url }] },
+  { name: "KPV", variants: [{ dose: "10MG", price: 45.95, image: kpvImage.url }] },
+  { name: "Melanotan ll", variants: [{ dose: "10MG", price: 39.95, image: melanotanImage.url }] },
+  { name: "Mots-c", variants: [{ dose: "40MG", price: 134.95, image: motsCImage.url }] },
+  { name: "NAD+", variants: [{ dose: "1000MG", price: 64.95, image: nadImage.url }] },
+  { name: "PT-141", variants: [{ dose: "10MG", price: 39.95, image: pt141Image.url }] },
+  { name: "Sermorelin", variants: [{ dose: "5MG", price: 39.95, image: sermorelinImage.url }] },
+  { name: "TB-500", variants: [{ dose: "10MG", price: 39.95, image: tb500Image.url }] },
+  { name: "Tesamorelin", variants: [{ dose: "10MG", price: 59.95, image: tesaImage.url }] },
 ];
 
 const trustItems = [
@@ -94,31 +96,38 @@ function HelixBackdrop() {
   );
 }
 
-function ProductCard({ product }: { product: (typeof products)[number] }) {
+function ProductCard({ product }: { product: Product }) {
+  const [variantIndex, setVariantIndex] = useState(0);
   const [pack, setPack] = useState(1);
   const [quantity, setQuantity] = useState(1);
-  const packPrice = tierPrice(product.price, pack);
-  const tenVialPrice = tierPrice(product.price, 10);
+  const variant = product.variants[variantIndex] ?? product.variants[0];
+  if (!variant) return null;
+  const displayName = `${product.name} ${variant.dose.toLowerCase()}`;
+  const packPrice = tierPrice(variant.price, pack);
+  const tenVialPrice = tierPrice(variant.price, 10);
   return (
     <article className="product-card">
-      <a href="#catalog" className="product-image"><img src={product.image} alt={`${product.name} research vial`} /></a>
+      <a href="#catalog" className="product-image"><img src={variant.image} alt={`${displayName} research vial`} /></a>
       <div className="product-copy">
         <div className="flex items-start justify-between gap-3">
-          <h3>{product.name}</h3><span className="stock"><span />In Stock</span>
+          <h3>{displayName}</h3><span className="stock"><span />In Stock</span>
         </div>
         <p className="eyebrow mt-4">Research compound</p>
-        <div className="price-line mt-2"><del>${formatPrice(listPrice(product.price))}</del><strong>${formatPrice(product.price)}</strong><span>/ vial</span></div>
+        {product.variants.length > 1 && <div className="variant-selector mt-3" aria-label={`${product.name} strength`}>
+          {product.variants.map((option, index) => <Button type="button" variant="outline" size="sm" key={option.dose} aria-pressed={variantIndex === index} onClick={() => setVariantIndex(index)} className={variantIndex === index ? "active" : ""}>{option.dose}</Button>)}
+        </div>}
+        <div className="price-line mt-2"><del>${formatPrice(listPrice(variant.price))}</del><strong>${formatPrice(variant.price)}</strong><span>/ vial</span></div>
         <p className="bulk-price mt-1"><span>10 vials = </span><del>${formatPrice(listPrice(tenVialPrice))}</del> <strong>${formatPrice(tenVialPrice)}</strong></p>
         <Button className="mt-3 w-full" onClick={() => undefined}><FileText size={15}/>View COA</Button>
         <div className="pack-grid mt-4">
           {[1,5,10].map((count) => {
-            const sellingPrice = tierPrice(product.price, count);
+            const sellingPrice = tierPrice(variant.price, count);
             return <button type="button" key={count} onClick={() => setPack(count)} className={pack === count ? "active" : ""}><b>{count} VIAL{count > 1 ? "S" : ""}</b><span><del>${formatPrice(listPrice(sellingPrice))}</del> ${formatPrice(sellingPrice)}</span>{count > 1 && <em>Save {count === 5 ? 5 : 10}%</em>}</button>;
           })}
         </div>
         <div className="mt-4 grid grid-cols-[104px_minmax(0,1fr)] gap-2">
           <div className="qty"><button aria-label="Decrease quantity" onClick={() => setQuantity(Math.max(1, quantity - 1))}><Minus size={14}/></button><span>{quantity}</span><button aria-label="Increase quantity" onClick={() => setQuantity(quantity + 1)}><Plus size={14}/></button></div>
-          <Button onClick={() => undefined}><ShoppingBag size={15}/>Add {product.dose}</Button>
+          <Button onClick={() => undefined}><ShoppingBag size={15}/>Add {variant.dose}</Button>
         </div>
         <p className="mt-3 text-right text-xs font-semibold">Total: ${formatPrice(packPrice * quantity)}</p>
       </div>
@@ -149,7 +158,7 @@ function Index() {
               <div className="mt-7 flex flex-wrap gap-3"><Button asChild><a href="#catalog">Browse the catalog <ChevronRight size={16}/></a></Button><Button asChild variant="outline"><a href="#quality">View COAs</a></Button></div>
               <p className="mt-5 text-xs font-medium text-muted-foreground">For laboratory research use only—not for human consumption.</p>
             </div>
-            <div className="hero-product"><div className="halo-ring"/><img src={vialImage} alt="Amino Heaven laboratory research vial"/><span>VERIFIED<br/>RESEARCH<br/>MATERIAL</span></div>
+            <div className="hero-product"><div className="halo-ring"/><img src={heroVialImage.url} alt="Amino Heaven laboratory research vial"/><span>VERIFIED<br/>RESEARCH<br/>MATERIAL</span></div>
           </div>
         </section>
 
